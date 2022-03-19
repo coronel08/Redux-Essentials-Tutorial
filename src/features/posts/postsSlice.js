@@ -7,6 +7,7 @@ const initialState = [
         title: "First Post!", 
         content: "Hello Post 1", 
         date: sub(new Date(), { minutes: 10 }).toISOString(), 
+        user: "0",
         reactions: {
             thumbsUp: 0,
             hooray: 0,
@@ -20,6 +21,7 @@ const initialState = [
         title: "Second Post!", 
         content: "More text", 
         date: sub(new Date(), { minutes: 5 }).toISOString(), 
+        user: "1",
         reactions: {
             thumbsUp: 0,
             hooray: 0,
@@ -45,7 +47,15 @@ const postsSlice = createSlice({
                         date: new Date().toISOString(),
                         title,
                         content,
-                        user: userId
+                        user: userId,
+                        reactions: {
+                            thumbsUp: 0,
+                            hooray: 0,
+                            heart: 0,
+                            rocket: 0,
+                            eyes: 0,
+                        },
+                
                     }
                 }
             }
