@@ -5,6 +5,8 @@ import { selectAllUsers } from './usersSlice'
 
 export const UserList = () => {
     const users = useSelector(selectAllUsers)
+    // const users = useSelector(state => state.users) // can also be written this way or abstracted into slice file. 
+
 
     return (
         <section>

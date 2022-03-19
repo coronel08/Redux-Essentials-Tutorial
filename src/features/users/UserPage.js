@@ -3,17 +3,24 @@ import { useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 
 import { selectUserById } from './usersSlice'
+import { SelectAllPosts } from '../posts/postsSlice'
 
 export function UserPage(){
-    // const {userId} = matchMedia.params
     const params = useParams()
     const {userId} = params
 
     const user = useSelector(state => selectUserById(state, userId))
 
-    const SelectAllPosts = useSelector(state => state.posts)
+    // Can select the state within the redux useSelector like below
+    // const SelectAllPosts = useSelector(state => state.posts)
+    // const postsForUser = useSelector(state => {
+    //     return SelectAllPosts.filter(post => post.user === userId)
+    // })
+
+    // Or can select the logic/state in the slice like below. Imports SelectAllPosts
     const postsForUser = useSelector(state => {
-        return SelectAllPosts.filter(post => post.uiser === userId)
+        const allPosts = SelectAllPosts(state)
+        return allPosts.filter(post => post.user === userId)
     })
 
     const postTitles = postsForUser.map(post => (
